@@ -1,7 +1,7 @@
-const {postMethod}=require('./controller')
+const {postMethod, getInput}=require('./controller')
 const {getMethod}=require('./controller')
 const {putMethod}=require('./controller')
-const {deleteMethod,practicePut}=require('./controller')
+const {deleteMethod,practicePut,loginInput}=require('./controller')
 const express = require('express');
 const cors = require('cors');
 const router=express.Router();
@@ -39,6 +39,10 @@ app.use('/api',router.post('/courses/post/:id',putMethod))
 app.use('/api',router.delete('/courses/delete/:id',deleteMethod))
 
 app.use('/api',router.patch('/courses/put/:id',practicePut))
+
+app.use('/api',router.post('/post/login',loginInput))
+
+app.use('/api',router.post('/values/login',getInput))
 
 
 // getData();

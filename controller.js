@@ -63,3 +63,29 @@ exports.practicePut=async (req,res)=>{
 res.send(data)
 
 }
+//new
+exports.loginInput =async (req,res)=>{
+    let result = await client.connect();
+    db= result.db(databaseName);
+    collection = db.collection('loginStorage');
+    let data = await collection.insertOne(req.body);
+    
+    let datas = await collection.find({}).toArray();
+
+res.send(datas)
+}
+
+exports.getInput=async (req,res)=>{
+    let result = await client.connect();
+    db= result.db(databaseName);
+    collection = db.collection('loginStorage');
+    let data = await collection.find({}).toArray();
+    
+    if(data[0].username===req.body.username && data[0].password===req.body.password){
+        res.status(200).send("Successfully logged in")
+    }
+    else{
+        res.status(401).send("login failed")
+    }
+    
+}
