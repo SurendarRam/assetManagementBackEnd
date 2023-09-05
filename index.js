@@ -1,7 +1,7 @@
 const {postMethod, getInput}=require('./controller')
 const {getMethod}=require('./controller')
 const {putMethod}=require('./controller')
-const {deleteMethod,practicePut,loginInput}=require('./controller')
+const {deleteMethod,practicePut,loginInput,getUserValues,postPreferences,getPreferences,getFilterPreferences,postFilterPreferences,deleteGroup}=require('./controller')
 const express = require('express');
 const cors = require('cors');
 const router=express.Router();
@@ -44,6 +44,17 @@ app.use('/api',router.post('/post/login',loginInput))
 
 app.use('/api',router.post('/values/login',getInput))
 
+app.use('/api',router.post('/values/user',getUserValues))
+
+app.use('/api',router.post('/content/details/group',postPreferences))
+
+app.use('/api',router.get('/get/group',getPreferences))
+
+app.use('/api',router.delete('/content/details/delete',deleteGroup))
+
+app.use('/api',router.post('/content/details/filter',postFilterPreferences))
+
+app.use('/api',router.get('/get/filter',getFilterPreferences))
 
 // getData();
 // var cors = require('cors');
